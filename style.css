@@ -72,11 +72,13 @@ nav ul {
   list-style: none;
   gap: 30px;
 }
+
 nav a {
   font-size: 0.9rem;
   letter-spacing: 1px;
   color: var(--text-sub);
 }
+
 nav a:hover {
   color: #fff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -95,14 +97,13 @@ nav a:hover {
 
 .hero h1 {
   font-family: "Cinzel", serif;
-  font-size: clamp(3rem, 10vw, 6rem); /* レスポンシブなフォントサイズ */
+  font-size: clamp(3rem, 10vw, 6rem);
+  /* レスポンシブなフォントサイズ */
   line-height: 1;
   margin-bottom: 20px;
-  background: linear-gradient(
-    to right,
-    var(--accent-secondary),
-    var(--accent-primary)
-  );
+  background: linear-gradient(to right,
+      var(--accent-secondary),
+      var(--accent-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 20px rgba(213, 51, 105, 0.4));
@@ -124,10 +125,12 @@ nav a:hover {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(10px);
   }
@@ -162,7 +165,8 @@ nav a:hover {
 
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 56.25%;
+  /* 16:9 Aspect Ratio */
   height: 0;
   overflow: hidden;
   border-radius: 12px;
@@ -192,7 +196,8 @@ nav a:hover {
   align-items: center;
   margin-top: 20px;
   padding: 12px 30px;
-  background: #ff0000; /* YouTube Red */
+  background: #ff0000;
+  /* YouTube Red */
   color: white;
   font-weight: bold;
   border-radius: 50px;
@@ -212,27 +217,33 @@ nav a:hover {
   padding: 40px 20px;
 }
 
-.banner-placeholder {
-  width: 728px;
-  height: 90px;
-  background: var(--glass-bg);
-  border: 1px dashed var(--accent-secondary);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--text-sub);
-  font-family: sans-serif;
-  letter-spacing: 1px;
+
+.banner-link {
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.banner-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(130, 130, 255, 0.3);
+}
+
+.banner-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* --- About --- */
 .about-box {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.01)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.01));
   padding: 40px;
   border-radius: 10px;
   border-left: 3px solid var(--accent-primary);

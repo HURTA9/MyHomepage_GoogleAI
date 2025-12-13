@@ -1,0 +1,7 @@
+{
+  "name": "my-homepage",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx serve ."
+  }
+}
