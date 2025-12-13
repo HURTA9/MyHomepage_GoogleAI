@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graze Catcher | HURTA Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="ui-layer">
+            <div class="score-board">
+                <div class="score-label">SCORE</div>
+                <div id="score-display">0</div>
+            </div>
+
+            <div id="start-screen" class="overlay active">
+                <h1>Graze Catcher</h1>
+                <p>Move mouse to catch bullets on the BEAT!</p>
+                <p class="instruction">リズムに合わせて弾幕に当たりにいこう</p>
+                <button id="start-btn">GAME START</button>
+            </div>
+
+            <div id="game-over-screen" class="overlay">
+                <h1>GAME OVER</h1>
+                <p>Score: <span id="final-score">0</span></p>
+                <button id="restart-btn">RETRY</button>
+                <a href="index.html" class="home-btn">Return to Home</a>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+
+</html>
