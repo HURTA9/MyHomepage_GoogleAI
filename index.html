@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HURTA | 東方自作アレンジ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <canvas id="bg-canvas"></canvas>
@@ -34,31 +38,34 @@
 
     <section id="arrange" class="section">
         <h2 class="section-title">Latest Arrange</h2>
-        
+
         <div class="video-highlight">
             <div class="video-container">
-                <iframe 
-                    width="560" 
-                    height="315" 
-                    src="https://www.youtube.com/embed/pqeau2sufDE?si=iDhWEmK5KMmBssWQ" 
-                    title="YouTube video player" 
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/pqeau2sufDE?si=iDhWEmK5KMmBssWQ"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                 </iframe>
             </div>
 
             <div class="video-info">
                 <h3>東方自作アレンジ Pick Up</h3>
                 <p>YouTubeチャンネル「HURTA Music」にて公開中の最新アレンジ楽曲。</p>
-                
+
                 <a href="https://www.youtube.com/@hurta_music" target="_blank" class="channel-btn">
                     Subscribe on YouTube
                 </a>
             </div>
         </div>
     </section>
+
+    <!-- Affiliate Banner Experiment -->
+    <div class="banner-container">
+        <div class="banner-placeholder">
+            <span>Affiliate Banner (728x90)</span>
+            <span style="font-size: 0.8rem; opacity: 0.7;">Sponsored Link</span>
+        </div>
+    </div>
 
     <section id="about" class="section">
         <h2 class="section-title">About HURTA</h2>
@@ -97,10 +104,22 @@
         let width, height;
         let particles = [];
 
+        // マウスの位置を保存する変数を追加します
+        // 初期値は画面の外側にしておきます
+        let mouseX = -100;
+        let mouseY = -100;
+
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         }
+
+        // マウスが動いたときに実行される処理を追加します
+        // e.clientX, e.clientY はマウスの現在の座標（X:横、Y:縦）です
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
         class Particle {
             constructor() {
@@ -128,17 +147,39 @@
 
         function init() {
             resize();
-            for(let i=0; i<100; i++) particles.push(new Particle());
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
         }
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            // 綺麗なグラデーション背景を描画
-            /* let gradient = ctx.createLinearGradient(0, 0, 0, height);
-            gradient.addColorStop(0, '#080810');
-            gradient.addColorStop(1, '#1a1a2e');
+
+            // --- 背景の描画処理 ---
+
+            // 1. 基本の背景色で塗りつぶします
+            // CSSで設定していますが、Canvas内で合成するためにここでも描画します
+            ctx.fillStyle = '#080810';
+            ctx.fillRect(0, 0, width, height);
+
+            // 2. マウスの位置に合わせたグラデーションを作成します
+            // createRadialGradient(x0, y0, r0, x1, y1, r1)
+            // 中心(mouseX, mouseY)から半径0、同じ中心から半径600の円形グラデーション
+            // ※半径600は光の広がり具合です。数値を大きくすると広く、小さくすると狭くなります
+            const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 600);
+
+            // グラデーションの色を設定します
+            // offset 0 (中心) は少し明るい青紫色（サイトのアクセントカラーに合わせる）
+            // rgbaの最後の数字(0.15)は透明度です。もっと明るくするために数値を大きくしました (0.4 -> 0.6)
+            // 色も少し明るめの青に調整しています
+            gradient.addColorStop(0, 'rgba(130, 130, 255, 0.6)');
+
+            // offset 1 (一番外側) は透明にして、自然に馴染ませます
+            gradient.addColorStop(1, 'rgba(80, 80, 160, 0)');
+
+            // 作成したグラデーションを使って長方形を描画します（画面全体）
             ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, width, height); */ // CSSで背景色を指定しているのでここはコメントアウト
+            ctx.fillRect(0, 0, width, height);
+
+            // --- ここまで背景処理 ---
 
             particles.forEach(p => {
                 p.update();
@@ -152,4 +193,5 @@
         animate();
     </script>
 </body>
+
 </html>

@@ -204,6 +204,28 @@ nav a:hover {
   background: #d40000;
 }
 
+/* --- Banner Experiment --- */
+.banner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.banner-placeholder {
+  width: 728px;
+  height: 90px;
+  background: var(--glass-bg);
+  border: 1px dashed var(--accent-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-sub);
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
 /* --- About --- */
 .about-box {
   background: linear-gradient(
